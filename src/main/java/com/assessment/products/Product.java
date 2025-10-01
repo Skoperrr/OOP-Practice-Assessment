@@ -6,6 +6,10 @@ package com.assessment.products;
 public abstract class Product {
     // TODO: Declare private fields for id, name, price, and stockQuantity
 
+    private String id;
+    private String name;
+    private double price;
+    private int stockQuantity;
     /**
      * Constructs a Product object.
      * @param id The product ID.
@@ -16,21 +20,33 @@ public abstract class Product {
     // TODO: Create a constructor that initializes all fields
     public Product(String id, String name, double price, int stockQuantity) {
         // TODO: IMPLEMENT: Initialize fields, calling setters for price and stockQuantity.
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
     }
 
     // TODO: Create getters for all fields
-    public String getId() { return ""; }
-    public String getName() { return ""; }
-    public double getPrice() { return 0.0; }
-    public int getStockQuantity() { return 0; }
+    public String getId() { return this.id; }
+    public String getName() { return this.name; }
+    public double getPrice() { return this.price; }
+    public int getStockQuantity() { return this.stockQuantity; }
 
     // TODO: Create setters for price and stockQuantity with validation
     public void setPrice(double price) {
         // TODO: IMPLEMENT: Set price, throwing IllegalArgumentException if price < 0.
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be negative");
+        }
+        this.price = price;
     }
 
     public void setStockQuantity(int stockQuantity) {
         // TODO: IMPLEMENT: Set stockQuantity, throwing IllegalArgumentException if quantity < 0.
+        if (stockQuantity < 0) {
+            throw new IllegalArgumentException("Stock quantity cannot be negative");
+        }
+        this.stockQuantity = stockQuantity;
     }
 
     /**
@@ -45,12 +61,15 @@ public abstract class Product {
      */
     public double getDiscountedPrice() {
         // TODO: IMPLEMENT: Return the price after subtracting the discount.
-        return 0.0;
+        return this.price - this.calculateDiscount();
     }
 
     @Override
     public String toString() {
         // TODO: IMPLEMENT: Return a formatted string with core product information.
-        return "Product Summary";
+        return "Product Summary\n" +
+                "ProductID: " + this.id + "\n"+
+                "Name: " + this.name + "\n" +
+                "Price: " + this.price + "\n";
     }
 }

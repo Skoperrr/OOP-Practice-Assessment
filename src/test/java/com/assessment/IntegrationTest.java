@@ -84,6 +84,7 @@ public class IntegrationTest {
             double discount = product.calculateDiscount();
             assertTrue(discount >= 0);
 
+            System.out.println(product.getDiscountedPrice() + " " + product.getPrice());
             assertTrue(product.getDiscountedPrice() < product.getPrice());
         }
 
